@@ -16,7 +16,7 @@ SETTINGS_SCHEMA = {
     },
     # ── Store / Channel ───────────────────────────────────────────────────
     "store": {
-        "product_category_hierarchy_name": "",
+        "product_category_hierarchy_name": "Frasers Group Product Hierarchy",
         "operating_unit_prefix": "B",
         "price_includes_sales_tax": "Yes",
         "maximum_text_length_on_receipt": "39",
@@ -47,7 +47,7 @@ SETTINGS_SCHEMA = {
         "tender_id_card": "660",
         "tender_id_float_remove": "9999",
         "payment_method_to_remove": "9999",
-        "card_connector_name": "",
+        "card_connector_name": "FrasersConnector",
         "gift_card_item_id": "GiftCardExt",
         "info_code_id": "PaidIn/Out",
     },
