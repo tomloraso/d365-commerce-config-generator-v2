@@ -11,19 +11,13 @@ class SitesV2Generator(BaseGenerator):
         ]
 
     def generate(self, stores):
-        # One row per unique COUNTRY value
-        seen = set()
-        rows = []
-        for r in stores:
-            country = r["COUNTRY"]
-            if country in seen:
-                continue
-            seen.add(country)
-            rows.append({
-                "SITEID": country,
-                "ISPRIMARYADDRESSASSIGNED": "No",
-                "ISRECEIVINGWAREHOUSEOVERRIDEALLOWED": "No",
-                "SITENAME": f"{country} {r['FASCIA']}",
-                "SITETIMEZONE": self.setting("timezone", "site_timezone"),
-            })
-        return rows
+        if not stores:
+            return []
+        r = stores[0]
+        return [{
+            "SITEID": r["COUNTRY"],
+            "ISPRIMARYADDRESSASSIGNED": "No",
+            "ISRECEIVINGWAREHOUSEOVERRIDEALLOWED": "No",
+            "SITENAME": f"{r['COUNTRY']} {r['FASCIA']}",
+            "SITETIMEZONE": self.setting("timezone", "site_timezone"),
+        }]
