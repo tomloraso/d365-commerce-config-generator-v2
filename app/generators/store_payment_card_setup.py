@@ -56,16 +56,16 @@ class StorePaymentCardSetupGenerator(BaseGenerator):
 
     def generate(self, stores):
         la = self.s.get("ledger_accounts", {})
-        tid = self.s.get("tender_ids", {})
+        pmt = self.s.get("payment", {})
         cash_ledger = la.get("cash_ledger", "821701")
         bfv_ledger = la.get("black_friday_voucher_ledger", "917023")
         cn_ledger = la.get("credit_note_ledger", "917012")
         gc_ledger = la.get("gift_card_ledger", "917002")
-        t_bfv = tid.get("tender_id_black_friday_voucher", "1023")
-        t_cn = tid.get("tender_id_credit_note", "631")
-        t_gc = tid.get("tender_id_gift_card", "650")
-        t_card = tid.get("tender_id_card", "660")
-        prefix = self.setting("organisation", "operating_unit_prefix")
+        t_bfv = pmt.get("tender_id_black_friday_voucher", "1023")
+        t_cn = pmt.get("tender_id_credit_note", "631")
+        t_gc = pmt.get("tender_id_gift_card", "650")
+        t_card = pmt.get("tender_id_card", "660")
+        prefix = self.setting("store", "operating_unit_prefix")
         selected_cards = self.profile.accepted_cards
 
         rows = []

@@ -13,7 +13,6 @@ class FilePanel(ttk.LabelFrame):
 
     def __init__(self, master, profile, **kwargs):
         kwargs.setdefault("text", "Files to Generate")
-        kwargs.setdefault("padding", 10)
         super().__init__(master, **kwargs)
         self.profile = profile
         self._vars = {}

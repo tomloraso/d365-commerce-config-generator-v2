@@ -8,7 +8,7 @@ class StoreHardwareStationGenerator(BaseGenerator):
         return ["STORENUMBER", "HARDWAREPROFILEID", "DESCRIPTION", "HARDWARESTATIONTYPE"]
 
     def generate(self, stores):
-        pattern = self.setting("organisation", "hardware_profile_pattern")
+        pattern = self.setting("hardware", "hardware_profile_pattern")
         rows = []
         for r in stores:
             store_number = r["STOREID"].zfill(4)

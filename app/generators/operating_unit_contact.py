@@ -8,7 +8,7 @@ class OperatingUnitContactGenerator(BaseGenerator):
         return ["TYPE", "LOCATOR", "OMOPERATINGUNITNUMBER", "PURPOSE"]
 
     def generate(self, stores):
-        prefix = self.setting("organisation", "operating_unit_prefix")
+        prefix = self.setting("store", "operating_unit_prefix")
         return [{
             "TYPE": "Phone",
             "LOCATOR": r.get("PHONE", ""),

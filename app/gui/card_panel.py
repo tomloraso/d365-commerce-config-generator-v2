@@ -13,7 +13,6 @@ class CardPanel(ttk.LabelFrame):
 
     def __init__(self, master, profile, **kwargs):
         kwargs.setdefault("text", "Accepted Cards  (Tender 660)")
-        kwargs.setdefault("padding", 10)
         super().__init__(master, **kwargs)
         self.profile = profile
         self._vars = {}

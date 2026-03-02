@@ -12,7 +12,7 @@ class OperatingUnitGenerator(BaseGenerator):
         ]
 
     def generate(self, stores):
-        prefix = self.setting("organisation", "operating_unit_prefix")
+        prefix = self.setting("store", "operating_unit_prefix")
         rows = []
         for r in stores:
             rows.append({

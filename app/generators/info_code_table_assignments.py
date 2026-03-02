@@ -11,13 +11,14 @@ class InfoCodeTableAssignmentsGenerator(BaseGenerator):
         ]
 
     def generate(self, stores):
+        info_code_id = self.setting("payment", "info_code_id")
         rows = []
         for r in stores:
             store_id = r["STOREID"].zfill(4)
             common = {
                 "REFTABLEID": "RetailIncomeExpenseAccountTable",
                 "REFRELATION1": store_id,
-                "INFOCODEID": "PaidIn/Out",
+                "INFOCODEID": info_code_id,
                 "INPUTREQUIRED": "Yes",
                 "SEQUENCE": "0",
                 "WHENREQUIRED": "None",

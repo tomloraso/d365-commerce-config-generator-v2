@@ -50,9 +50,9 @@ class SettingsDialog(tk.Toplevel):
         ttk.Separator(self, orient=HORIZONTAL).pack(fill=X)
 
         # Notes area
-        notes_frame = ttk.LabelFrame(self, text="Project Notes", padding=8)
+        notes_frame = ttk.LabelFrame(self, text="Project Notes")
         notes_frame.pack(fill=X, padx=16, pady=(10, 0))
-        self._notes_text = tk.Text(notes_frame, height=3, wrap=WORD, font=("", 9))
+        self._notes_text = tk.Text(notes_frame, height=3, wrap=WORD, font=("", 9), padx=6, pady=6)
         self._notes_text.insert("1.0", self.profile.notes)
         self._notes_text.pack(fill=X)
 

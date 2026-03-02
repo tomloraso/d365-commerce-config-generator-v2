@@ -28,7 +28,7 @@ class StorePaymentMethodsGenerator(BaseGenerator):
         """Shared defaults that every tender inherits before overrides."""
         la = self.s.get("ledger_accounts", {})
         diff_acct = la.get("difference_account", "119005")
-        dim_pattern = self.setting("organisation", "dimension_display_value_pattern")
+        dim_pattern = self.setting("store", "dimension_display_value_pattern")
         dim_value = dim_pattern.replace("{store_id}", store_id)
         return {
             "RETAILCHANNELID": store_id,
@@ -97,12 +97,11 @@ class StorePaymentMethodsGenerator(BaseGenerator):
             return []
 
         legal_entity = stores[0]["LEGALENTITY"]
-        org = self.s.get("organisation", {})
+        pmt = self.s.get("payment", {})
         la = self.s.get("ledger_accounts", {})
-        tid = self.s.get("tender_ids", {})
-        connector = org.get("card_connector_name", "")
-        gc_item = org.get("gift_card_item_id", "GiftCardExt")
-        dim_pattern = org.get("dimension_display_value_pattern", "-{store_id}-STORE-SDR-")
+        connector = pmt.get("card_connector_name", "")
+        gc_item = pmt.get("gift_card_item_id", "GiftCardExt")
+        dim_pattern = self.s.get("store", {}).get("dimension_display_value_pattern", "-{store_id}-STORE-SDR-")
         cash_ledger = la.get("cash_ledger", "821701")
         bank_bag_ledger = la.get("bank_bag_ledger", "821602")
         diff_acct = la.get("difference_account", "119005")
@@ -110,12 +109,12 @@ class StorePaymentMethodsGenerator(BaseGenerator):
         cn_ledger = la.get("credit_note_ledger", "917012")
         gc_ledger = la.get("gift_card_ledger", "917002")
 
-        t_cash = tid.get("tender_id_cash", "1")
-        t_bfv = tid.get("tender_id_black_friday_voucher", "1023")
-        t_cn = tid.get("tender_id_credit_note", "631")
-        t_gc = tid.get("tender_id_gift_card", "650")
-        t_card = tid.get("tender_id_card", "660")
-        t_float = tid.get("tender_id_float_remove", "9999")
+        t_cash = pmt.get("tender_id_cash", "1")
+        t_bfv = pmt.get("tender_id_black_friday_voucher", "1023")
+        t_cn = pmt.get("tender_id_credit_note", "631")
+        t_gc = pmt.get("tender_id_gift_card", "650")
+        t_card = pmt.get("tender_id_card", "660")
+        t_float = pmt.get("tender_id_float_remove", "9999")
 
         rows = []
         for r in stores:

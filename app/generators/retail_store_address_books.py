@@ -8,8 +8,8 @@ class RetailStoreAddressBooksGenerator(BaseGenerator):
         return ["RETAILCHANNELID", "ADDRESSBOOKNAME", "ADDRESSBOOKTYPE"]
 
     def generate(self, stores):
-        cust_book = self.setting("organisation", "customer_address_book")
-        staff_book = self.setting("organisation", "staff_address_book")
+        cust_book = self.setting("customers", "customer_address_book")
+        staff_book = self.setting("customers", "staff_address_book")
         rows = []
         for r in stores:
             store_id = r["STOREID"].zfill(4)

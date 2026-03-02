@@ -26,12 +26,12 @@ class StoreTable(ttk.Frame):
     # ------------------------------------------------------------------ form
 
     def _build_form(self):
-        form_outer = ttk.LabelFrame(self, text="Store Details", padding=10)
+        form_outer = ttk.LabelFrame(self, text="Store Details")
         form_outer.pack(fill=X, padx=8, pady=(8, 4))
 
         # Two columns of fields for compactness
-        left = ttk.Frame(form_outer)
-        right = ttk.Frame(form_outer)
+        left = ttk.Frame(form_outer, padding=10)
+        right = ttk.Frame(form_outer, padding=10)
         left.pack(side=LEFT, fill=X, expand=True, padx=(0, 10))
         right.pack(side=LEFT, fill=X, expand=True)
 
@@ -63,7 +63,7 @@ class StoreTable(ttk.Frame):
     # ---------------------------------------------------------------- table
 
     def _build_table(self):
-        table_outer = ttk.LabelFrame(self, text="Stores", padding=(8, 4))
+        table_outer = ttk.LabelFrame(self, text="Stores")
         table_outer.pack(fill=BOTH, expand=True, padx=8, pady=4)
 
         self.tree = ttk.Treeview(

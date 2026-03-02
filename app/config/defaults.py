@@ -6,35 +6,52 @@ Every key here can be overridden per project in a saved profile.
 import copy
 
 SETTINGS_SCHEMA = {
-    "organisation": {
-        "product_category_hierarchy_name": "",
+    # ── Customers / Parties ───────────────────────────────────────────────
+    "customers": {
         "customer_group_id": "40",
         "customer_last_name_suffix": "Default Customer",
         "customer_address_book": "Cust_All",
         "staff_address_book": "Staff_All",
+        "receipt_option": "RetailEx3",
+    },
+    # ── Store / Channel ───────────────────────────────────────────────────
+    "store": {
+        "product_category_hierarchy_name": "",
         "operating_unit_prefix": "B",
-        "gift_card_item_id": "GiftCardExt",
-        "card_connector_name": "",
-        "payment_method_to_remove": "9999",
         "price_includes_sales_tax": "Yes",
+        "maximum_text_length_on_receipt": "39",
         "layout_id_pattern": "SD_{country}",
         "tax_group_pattern": "{country_code_upper}_DOM_CUS",
-        "hardware_profile_pattern": "{country_code}-PhysPED",
         "dimension_display_value_pattern": "-{store_id}-STORE-SDR-",
     },
+    # ── Warehouse / Inventory ─────────────────────────────────────────────
+    "warehouse": {
+        "inventory_status_id": "ACTIVE",
+    },
+    # ── Hardware Station ──────────────────────────────────────────────────
+    "hardware": {
+        "hardware_profile_pattern": "{country_code}-PhysPED",
+    },
+    # ── Timezone ──────────────────────────────────────────────────────────
     "timezone": {
         "site_timezone": "GMT_CASABLANCA_MONTROVIA_REYKJAVIK",
         "channel_timezone": "GMT_CASABLANCA_MONTROVIA_REYKJAVIK",
         "channel_timezone_info_id": "GREENWICH STANDARD TIME",
     },
-    "tender_ids": {
+    # ── Payment Methods ───────────────────────────────────────────────────
+    "payment": {
         "tender_id_cash": "1",
         "tender_id_black_friday_voucher": "1023",
         "tender_id_credit_note": "631",
         "tender_id_gift_card": "650",
         "tender_id_card": "660",
         "tender_id_float_remove": "9999",
+        "payment_method_to_remove": "9999",
+        "card_connector_name": "",
+        "gift_card_item_id": "GiftCardExt",
+        "info_code_id": "PaidIn/Out",
     },
+    # ── Ledger Accounts ───────────────────────────────────────────────────
     "ledger_accounts": {
         "cash_ledger": "821701",
         "bank_bag_ledger": "821602",
@@ -52,34 +69,44 @@ SETTINGS_SCHEMA = {
 
 # Human-readable labels for the settings dialog
 SETTINGS_LABELS = {
-    "organisation": {
-        "product_category_hierarchy_name": "Product Category Hierarchy Name",
+    "customers": {
         "customer_group_id": "Customer Group ID",
         "customer_last_name_suffix": "Default Customer Last Name",
         "customer_address_book": "Customer Address Book",
         "staff_address_book": "Staff Address Book",
+        "receipt_option": "Receipt Option (e.g. RetailEx3)",
+    },
+    "store": {
+        "product_category_hierarchy_name": "Product Category Hierarchy Name",
         "operating_unit_prefix": "Operating Unit Prefix",
-        "gift_card_item_id": "Gift Card Item ID",
-        "card_connector_name": "Card Payment Connector Name",
-        "payment_method_to_remove": "Payment Method to Remove/Float ID",
         "price_includes_sales_tax": "Price Includes Sales Tax (Yes/No)",
-        "layout_id_pattern": "Layout ID Pattern  {country} = country code",
-        "tax_group_pattern": "Tax Group Pattern  {country_code_upper} = 2-letter code",
-        "hardware_profile_pattern": "Hardware Profile Pattern  {country_code} = 2-letter code",
-        "dimension_display_value_pattern": "Dimension Display Value Pattern  {store_id}",
+        "maximum_text_length_on_receipt": "Max Text Length on Receipt (chars)",
+        "layout_id_pattern": "Layout ID Pattern  ({country} = 3-letter country)",
+        "tax_group_pattern": "Tax Group Pattern  ({country_code_upper} = 2-letter code)",
+        "dimension_display_value_pattern": "Dimension Display Value Pattern  ({store_id})",
+    },
+    "warehouse": {
+        "inventory_status_id": "Default Inventory Status ID",
+    },
+    "hardware": {
+        "hardware_profile_pattern": "Hardware Profile Pattern  ({country_code} = 2-letter code)",
     },
     "timezone": {
         "site_timezone": "Site Timezone (D365 enum)",
         "channel_timezone": "Channel Timezone (D365 enum)",
-        "channel_timezone_info_id": "Channel Timezone Info ID",
+        "channel_timezone_info_id": "Channel Timezone Info ID (Windows)",
     },
-    "tender_ids": {
+    "payment": {
         "tender_id_cash": "Cash Tender ID",
         "tender_id_black_friday_voucher": "Black Friday Voucher Tender ID",
         "tender_id_credit_note": "Credit Note Tender ID",
         "tender_id_gift_card": "Gift Card Tender ID",
         "tender_id_card": "Card (EFT) Tender ID",
         "tender_id_float_remove": "Tender Remove/Float ID",
+        "payment_method_to_remove": "Payment Method to Remove/Add (Store)",
+        "card_connector_name": "Card Payment Connector Name",
+        "gift_card_item_id": "Gift Card Item ID",
+        "info_code_id": "Info Code ID for Paid In/Out",
     },
     "ledger_accounts": {
         "cash_ledger": "Cash Ledger Account",
@@ -97,9 +124,12 @@ SETTINGS_LABELS = {
 }
 
 TAB_LABELS = {
-    "organisation": "Organisation",
+    "customers": "Customers",
+    "store": "Store / Channel",
+    "warehouse": "Warehouse",
+    "hardware": "Hardware",
     "timezone": "Timezone",
-    "tender_ids": "Tender IDs",
+    "payment": "Payment",
     "ledger_accounts": "Ledger Accounts",
 }
 

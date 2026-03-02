@@ -21,9 +21,10 @@ class CustomersV3Generator(BaseGenerator):
         ]
 
     def generate(self, stores):
-        address_book = self.setting("organisation", "customer_address_book")
-        customer_group = self.setting("organisation", "customer_group_id")
-        last_name = self.setting("organisation", "customer_last_name_suffix")
+        address_book = self.setting("customers", "customer_address_book")
+        customer_group = self.setting("customers", "customer_group_id")
+        last_name = self.setting("customers", "customer_last_name_suffix")
+        receipt_option = self.setting("customers", "receipt_option")
 
         rows = []
         for r in stores:
@@ -63,7 +64,7 @@ class CustomersV3Generator(BaseGenerator):
                 "PERSONLASTNAME": last_name,
                 "PERSONMARITALSTATUS": "None",
                 "PRIORITY": "AllocationPriority10",
-                "RECEIPTOPTION": "RetailEx3",
+                "RECEIPTOPTION": receipt_option,
                 "SALESCURRENCYCODE": r["CURRENCY"],
                 "SALESTAXGROUP": r["TAXGROUP"],
             })

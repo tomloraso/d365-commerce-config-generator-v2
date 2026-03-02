@@ -26,15 +26,16 @@ class StoresGenerator(BaseGenerator):
         ]
 
     def generate(self, stores):
-        prefix = self.setting("organisation", "operating_unit_prefix")
-        pmt_remove = self.setting("organisation", "payment_method_to_remove")
-        price_tax = self.setting("organisation", "price_includes_sales_tax")
-        hierarchy = self.setting("organisation", "product_category_hierarchy_name")
-        layout_pattern = self.setting("organisation", "layout_id_pattern")
-        tax_pattern = self.setting("organisation", "tax_group_pattern")
-        dim_pattern = self.setting("organisation", "dimension_display_value_pattern")
+        prefix = self.setting("store", "operating_unit_prefix")
+        pmt_remove = self.setting("payment", "payment_method_to_remove")
+        price_tax = self.setting("store", "price_includes_sales_tax")
+        hierarchy = self.setting("store", "product_category_hierarchy_name")
+        layout_pattern = self.setting("store", "layout_id_pattern")
+        tax_pattern = self.setting("store", "tax_group_pattern")
+        dim_pattern = self.setting("store", "dimension_display_value_pattern")
         channel_tz = self.setting("timezone", "channel_timezone")
         channel_tz_id = self.setting("timezone", "channel_timezone_info_id")
+        receipt_text_len = self.setting("store", "maximum_text_length_on_receipt")
 
         rows = []
         for r in stores:
@@ -61,7 +62,7 @@ class StoresGenerator(BaseGenerator):
                 "INVENTORYLOOKUP": "No",
                 "LAYOUTID": layout_id,
                 "MAXIMUMPOSTINGDIFFERENCE": "999999999999999.000000",
-                "MAXIMUMTEXTLENGTHONRECEIPT": "39",
+                "MAXIMUMTEXTLENGTHONRECEIPT": receipt_text_len,
                 "MAXROUNDINGAMOUNT": ".000000",
                 "MAXROUNDINGTAXAMOUNT": ".000000",
                 "MAXSHIFTDIFFERENCEAMOUNT": "999999999999999.000000",
